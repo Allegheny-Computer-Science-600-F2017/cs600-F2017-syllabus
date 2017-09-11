@@ -1,0 +1,15 @@
+before_install:
+- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends latexmk
+  texlive-fonts-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra
+  texlive-latex-recommended
+script:
+- mkdir _build
+- latexmk -pdf -outdir=_build cs600F2017_syllabus.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: KTy/G2DbG6vQSM6gXbKbWtXHY0hsQfX54NOOQhmdUCZup3islllw2wEKU+Rf0ntbTtYykA0dNNaeNgwglAp33DbMZFKWZP9gFwqlXFHF8IaKzr18hxan60uTMmY7r1ilo4dQ5q0LZi4LeYttKZTsiY8dONS37E9G4ADMSILbxZKHLIuIk01UOdbZVMWedODJqlGtACC80D5FWBjpaA32A2EwguxM2fGlhthsgVloYmZ3sXFZrnwkXmq13dvr/jAWfFY32aLThHyRv519UKIkE2aQ02k9PmpNbn2uSKzDSuZOxKY/yO6+rKUA/z9M5sqY/LKG6sTr5F2Nl2WZTkJtJjZaZN9gY5DyODaMALMPDWxJOVTZ1hqzZb9u+faP+8HTm/NyTiFMI8EejlFIg0l28/D4UeZloTq2KCHUL9qESFlPlzCn0FOKdRYuDqTZZ99vRei2AYraO0k6j/kwkVp/6iaaquMhstvHHUC6Ujw3TQsixrkUZL6ti9kMZ7pXvS5TYcxUWJaqIZJWbOckqUicQplTKSQkoPaqSh/Ah2BBiGaWXsqbU+dvT8DIgeafQSAIa9+GYYmxTKOOxzyVyUTh+8V5umLglio4PFYHXdxz6LIuMtYOdKTHFBHdWQAOP7EE7BhopTIxcA9j/KiF40NIo53tYKrlrq0F9JJb/AIdddY=
+  file: _build/cs600F2017_syllabus.pdf
+  skip_cleanup: true
+  on:
+    tags: true
